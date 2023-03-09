@@ -1,0 +1,17 @@
+<div style = "margin-left: auto;margin-right: auto;" [ngStyle]="{'width':data.width ,'height':data.height}">
+    <carousel [noPause]="noWrapSlides" [noWrap]="noWrapSlides" (activeSlideChange)= "carouselChanged($event)">
+      <slide *ngFor ="let event of data.eventData">
+        <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(this.url)" alt="first slide"  (error)="errorInloading($event)" [ngStyle]="{'width':data.width ,'height':data.height}">
+      </slide>
+    </carousel>
+    <div style="text-align: center;">
+      <dl>
+        <dt>Time</dt>
+        <dd>{{time | date:'d MMMM yyyy HH:mm'}}</dd>
+      </dl>
+      <dl>
+        <dt>Classification</dt>
+        <dd>{{imageType}}</dd>
+      </dl>
+    </div>
+  </div>

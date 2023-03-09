@@ -1,0 +1,127 @@
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0px !important;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: var(--component-active-background,#f5f5f5);
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: var(--component-active-background,#efefef);
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.header-item {
+  flex-grow: 1;
+}
+
+.filter-panel {
+  padding-left: 20px;
+  font-style: italic;
+}
+
+.mat-form-search {
+  position: absolute;
+  top: 25px;
+  color: #8a72ff;
+
+}
+
+.mat-form .mat-form-field-infix {
+  margin-left: 20px;
+}
+
+.refresh-panel {
+  float: right;
+}
+
+.mat-form {
+  width: 100%;
+}
+
+.brandingTheme {
+  background-color: var(--component-background, #fff);
+}
+
+.brandingTheme td.mat-cell,
+.brandingTheme td.mat-footer-cell,
+.brandingTheme th.mat-header-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 100px;
+  padding-right: 10px;
+  white-space: normal;
+  color: var(--component-color,#000);
+}
+
+.refresh-button {
+  color: #1776BF;
+}
+
+.slide-toggle-problem {
+  margin-left: 10px;
+}
+
+.header-container {
+  display: flex;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.div-row {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 250px;
+  float: right;
+  justify-content: space-around;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}
+
+.inputTheme {
+  color: var(--card-color, #000);
+}
+
+.inputTheme:focus {
+  color: #000;
+}
+th.mat-header-cell {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+..input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+}

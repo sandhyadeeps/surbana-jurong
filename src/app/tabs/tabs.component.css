@@ -1,0 +1,13 @@
+.tab-container {
+    background-color: #c4c5c5;
+}
+
+div > ul.nav-tabs {
+    display: inline-flex !important;
+    background-color: unset !important;
+    gap: unset !important;
+}
+
+.fs-16 {
+    font-size: 16px;
+}

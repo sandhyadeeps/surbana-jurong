@@ -1,0 +1,11 @@
+<div class="tab-container">
+  <div>
+    <ul role="tablist" class="nav nav-tabs">
+      <li class="nav-item">
+        <a role="tab" class="nav-link" aria-controls="tab1" [ngClass]="{'active': selectedItem == 'telemetry'}" (click)="navigateToTelemetry('telemetry')" id="tab1-link"><span class="fs-16">Telemetry</span></a>
+      </li>
+      <li class="nav-item">
+        <a role="tab" class="nav-link" aria-controls="tab2" [ngClass]="{'active': selectedItem == 'realtime'}" (click)="navigateToRealtime('realtime')" id="tab2-link"><span class="fs-16">Real Time Event</span></a></li>
+    </ul>
+  </div>
+</div>

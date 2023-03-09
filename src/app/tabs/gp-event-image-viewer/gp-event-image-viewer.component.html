@@ -1,0 +1,69 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div style="height: 40px;">
+  <div style="float: right; margin-right: 10px;">
+    <button type="button" class="btn btn-clean btn-icon" (click)="setSlideShow()"><i c8yIcon="slideshare"></i></button>
+    <button type="button" class="btn btn-clean btn-icon" style="color:#1776BF;" (click)="refresh()"><i
+        c8yIcon="refresh"></i></button>
+  </div>
+</div>
+<div style="margin-left: 15px;">
+  <div class="dateChooserStyling form-group datepicker" >
+    <input class="form-control" placeholder="From" [bsConfig]="{ customTodayClass: 'today' }"
+      (ngModelChange)="dateChanged('from',$event)" [(ngModel)]="fromDate" title="From Date" bsDatepicker />
+  </div>
+  <div class="dateChooserStyling form-group datepicker">
+    <input class="form-control" placeholder="TO" [bsConfig]="{ customTodayClass: 'today' }"
+      (ngModelChange)="dateChanged('to',$event)" [(ngModel)]="toDate" title="To Date" bsDatepicker />
+  </div>
+  <button type="button" title="Filter date range" class="btn btn-default " (click)="filter()">
+    <i c8y-icon="filter" class="fa fw fa-filter"></i>
+  </button>
+</div>
+<div style="margin-left: 70px;">
+  <div class="timeline-list">
+    <div class="timeline-list-item flex-row " *ngFor="let event of displayData"
+      [ngClass]="{'expanded': !event.isCollapsed1}">
+      <small class="timeline-item-date text-right">
+        <strong>{{event.time | date:'d MMMM \n yyyy HH:mm'}}</strong><br />
+      </small>
+      <div class="timeline-item-content flex-row wrap pointer" (click)="collapseLogic(event.id);">
+        <div class="list-item-actions">
+          <button type="button" title="Expand" class="collapse-btn">
+            <i c8yIcon="chevron-down"></i>
+          </button>
+        </div>
+        <div class="list-item-body">
+          <span style="font-size:14px; font-weight:500;">Temperature Details
+          </span>
+        </div>
+        <div class="collapse no-cursor" [collapse]="event.isCollapsed1" [isAnimated]="true"
+          (click)="$event.stopPropagation()">
+          <div class="legend form-block" translate>Details</div>
+          <div style="float: left;">
+            <dl class="dl-inline small text-muted">
+              <dt>Time</dt>
+              <dd>{{event.time | date:'d MMMM yyyy HH:mm'}}</dd>
+            </dl>
+            <dl class="dl-inline small text-muted">
+              <dt>Temperature </dt>
+              <dd>{{event.temperature_measurement.T.value}} {{event.temperature_measurement.T.unit}}</dd>
+            </dl>
+            <dl class="dl-inline small text-muted">
+              <dt>Type </dt>
+              <dd>{{event.type}}</dd>
+            </dl>
+            <dl class="dl-inline small text-muted">
+              <dt>ID</dt>
+              <dd>{{event.id}}</dd>
+            </dl>
+          </div>
+          <!-- <div class="child" style="float: right;">
+            <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(this.url)" (error)="errorInloading($event)"
+              class="stepper-img" (click)="openDialog(event.Image)" matTooltip="Click to zoom it">
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  

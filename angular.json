@@ -23,7 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": []
           },
@@ -96,6 +99,40 @@
           }
         }
       }
+    },
+    "gp-surbana-jurong-widget": {
+      "projectType": "library",
+      "root": "projects/gp-surbana-jurong-widget",
+      "sourceRoot": "projects/gp-surbana-jurong-widget/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/gp-surbana-jurong-widget/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/gp-surbana-jurong-widget/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/gp-surbana-jurong-widget/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/gp-surbana-jurong-widget/src/test.ts",
+            "tsConfig": "projects/gp-surbana-jurong-widget/tsconfig.spec.json",
+            "karmaConfig": "projects/gp-surbana-jurong-widget/karma.conf.js"
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

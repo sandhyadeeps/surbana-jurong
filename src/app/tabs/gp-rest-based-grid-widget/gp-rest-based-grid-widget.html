@@ -1,0 +1,71 @@
+<div class="header-container">
+  <div class="header-item">
+    <div class="filter-panel">
+      <div id="search" class="input-group input-group-search">
+        <input type="search" class="form-control inputTheme"
+          placeholder="Enter Device Name, Id, External Id, Alerts Type, etc." (keyup)="applyFilter($event)"
+          [(ngModel)]="filterValue" />
+        <span class="input-group-addon">
+          <i c8yIcon="search" *ngIf="!filterValue || filterValue.length === 0"></i>
+          <i c8yIcon="times" class="text-muted" *ngIf="filterValue && filterValue.length > 0"
+            (click)="filterValue= ''"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="header-item">
+    <div class="refresh-panel">
+      <button type="button" class="btn btn-link" (click)="refresh()"><span class="fa fa-refresh"></span></button>
+    </div>
+
+  </div>
+</div>
+
+<div>
+  <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8 brandingTheme"
+    *ngIf="this.displayedColumns">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef>
+        {{column.header}}
+      </th>
+      <td mat-cell *matCellDef="let row ">{{column.cell(row)}}</td>
+      
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <div *ngIf="isExpandable">
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <table mat-table [dataSource]="element[subList]" class="mat-elevation-z8" width="100%">
+              <div *ngIf="expandedDetail">
+                <ng-container *ngFor="let column1 of expandedColumns" [matColumnDef]="column1.columnDef">
+                  <th mat-header-cell *matHeaderCellDef>{{column1.header}}</th>
+                  <td mat-cell *matCellDef="let row1 ">
+                    {{column1.cell(row1)}}
+                   
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="expandedDetail"></tr>
+                <tr mat-row *matRowDef="let row; columns: expandedDetail;"></tr>
+              </div>
+            </table>
+          </div>
+        </td>
+      </ng-container>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === row"
+      (click)="expandedElement  = expandedElement === row ? null : row"></tr>
+
+    <div div *ngIf="this.isExpandable">
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </div>
+  </table>
+  <mat-paginator #paginator [length]="totalRecord" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page" showFirstLastButtons>
+  </mat-paginator>
+</div>
