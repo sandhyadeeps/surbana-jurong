@@ -24003,7 +24003,7 @@ c8y-load-more.c8y-list__item .btn {
     line-height: var(--line-height-base,1.42857143);
     transition: color .15s ease;
     border-bottom: 4px solid transparent;
-    margin-right: 16px
+   
 }
 
 .nav-tabs>li>a>.c8y-icon,.nav-tabs>li>a>.fa,.nav-tabs>li>button>.c8y-icon,.nav-tabs>li>button>.fa {

@@ -92,10 +92,12 @@ export class GpEventImageViewerComponent implements OnInit {
     this.toDate = '';
     this.subscription = timer(0, 15000).pipe(
       switchMap(() => this.imageViewrService.getPosts())
-    ).subscribe((result: any) =>
-      this.displayData.push(result)
-    //this.imageViewrService.fetchS3(this.config);
-    //await this.fetchEvents();
+    ).subscribe((result: any) => {
+      this.displayData.push(result);
+      this.displayData.forEach((data) => {
+        data.temperature_measurement.T.value = data.temperature_measurement.T.value.toFixed(2);
+      })
+    }
   )}
   errorInloading(event: any) {
     this.url = 'data:image/png;base64, ' + DefaultImage.defaultImage;
