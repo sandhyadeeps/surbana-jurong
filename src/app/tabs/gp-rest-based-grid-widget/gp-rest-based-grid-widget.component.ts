@@ -121,7 +121,7 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
         data.measurementTime = this.datePipe.transform(data.measurementTime, 'dd/MM/yyyy hh:mm:ss aa')
       });
       this.dataSource.data = this.responseData;
-      this.sort.direction = 'desc';
+      //this.sort.direction = 'desc';
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }
