@@ -15,13 +15,9 @@ div>ul.nav-tabs {
 .nav-tabs .nav-link {
     padding: 12px !important;
     border: unset !important;
-    
+
 }
 
 .nav-tabs .nav-link.active {
     box-shadow: inset 0 calc(var(--c8y-nav-tabs-border-width-active) * -1) 0 0 #337fdd
-}
-
-.nav-tabs>li>a {
-    box-shadow: unset !important;
 }
