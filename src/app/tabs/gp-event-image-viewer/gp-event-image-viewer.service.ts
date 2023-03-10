@@ -26,7 +26,7 @@ export class GpEventImageViewerService {
   imgSrc = '';
   s3: any;
   config: any;
-  private url = 'https://wmiowsdev.int-aws-de.webmethods.io/runflow/run/sync/PrlZKqZec';
+  private url = 'https://wmiowsdev.int-aws-de.webmethods.io/runflow/run/sync/lO81aK4pc';
   httpClient: any;
   constructor(private http: HttpClient) { }
 

@@ -42,15 +42,14 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
   ServiceRequest: string | undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   date: any;
-  posts:any;
-    
-  constructor(private iotSrService: GpRestBasedGridWidgetService,private datePipe:DatePipe) { }
+  posts: any;
 
-  @ViewChild(MatSort, { static: true })
-  set sort(v: MatSort) { this.dataSource.sort = v; }
+  constructor(private iotSrService: GpRestBasedGridWidgetService, private datePipe: DatePipe) { }
+
+  @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
-  displayedColumns: string[]=[];
-  displayedColumnValues: string[]=[];
+  displayedColumns: string[] = ['measurementID', 'measurementTime', 'measurementValue', 'measurementUnit'];
+  displayedColumnValues: string[] = [];
   expandedDetail: string[] = [];
   expandedDetailValues: string[] = [];
   mainList: string = '';
@@ -69,20 +68,20 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
   ApiUrl: string = '';
   tableColumnNames = "Measurement ID,Measurement Time,Measurement Value,Measurement Unit";
   tableColumnValues = "measurementID,measurementTime,measurementValue,measurementUnit";
-  
+
   async ngOnInit() {
 
-    
-    
-    this.date = this.datePipe.transform(new Date(), 'dd-MM-yy');
-      const response = await this.iotSrService.getRestItems();
-      this.isDeviceSelected = false; //hardcode device id
 
-      this.pageSize = 5
+
+    this.date = this.datePipe.transform(new Date(), 'dd-MM-yy');
+    const response = await this.iotSrService.getRestItems();
+    this.isDeviceSelected = false; //hardcode device id
+
+    this.pageSize = 5
 
     if (this.isDeviceSelected) {
-     // this.deviceExtId = await this.iotSrService.getExternalIdForDevice(); //hardcode device id
-     // this.ApiUrl = 'hsgadhsfdh' + this.deviceExtId;
+      // this.deviceExtId = await this.iotSrService.getExternalIdForDevice(); //hardcode device id
+      // this.ApiUrl = 'hsgadhsfdh' + this.deviceExtId;
       this.isDeviceSelected = false;
     } else {
       this.ApiUrl = 'http://wmiowsdev.int-aws-de.webmethods.io/runflow/run/sync/jVHJzLzqN';  //hardcode api url
@@ -93,13 +92,13 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
     this.mainList = '';
     this.subList = '';
 
-    this.displayedColumns = this.tableColumnNames.split(',');
+    /*this.displayedColumns = this.tableColumnNames.split(',');
     this.displayedColumnValues = this.tableColumnValues.split(',');
 
     this.displayedColumns.forEach((iterator, index) => {
       this.columns.push({ columnDef: iterator, header: iterator, cell: (element: any) => `${element[this.displayedColumnValues[index]]}` },)
 
-    });
+    });*/
 
     if (this.isExpandable) {
       this.expandedDetail = this.config.subTableColumnNames.split(',');
@@ -122,6 +121,7 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
         data.measurementTime = this.datePipe.transform(data.measurementTime, 'dd/MM/yyyy hh:mm:ss aa')
       });
       this.dataSource.data = this.responseData;
+      this.sort.direction = 'desc';
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }
@@ -138,8 +138,8 @@ export class GpRestBasedGridWidgetComponent implements OnInit, AfterViewInit {
 
     }
     if (this.isDeviceSelected) {
-     // this.deviceExtId = await this.iotSrService.getExternalIdForDevice();
-    //  this.ApiUrl = this.config.url + this.deviceExtId;
+      // this.deviceExtId = await this.iotSrService.getExternalIdForDevice();
+      //  this.ApiUrl = this.config.url + this.deviceExtId;
       this.isDeviceSelected = false;
     } else {
       this.ApiUrl = this.config.url;

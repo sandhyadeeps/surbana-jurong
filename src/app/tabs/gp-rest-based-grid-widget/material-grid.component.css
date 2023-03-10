@@ -119,9 +119,10 @@ tr.example-element-row:not(.example-expanded-row):active {
 th.mat-header-cell {
   font-size: 16px;
   font-weight: bold;
+  color: black;
 }
 
-..input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control, .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select, .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
-  border-top-right-radius: 2px !important;
-  border-bottom-right-radius: 2px !important;
+.inputbar {
+  border-radius: 20px !important;
+  width: 60% !important;
 }
